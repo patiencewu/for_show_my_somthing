@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老房整改整合合同 · 含模糊点标注</title>
+    <style>
+        :root {
+            --bg: #f7f5f0;
+            --card-bg: #ffffff;
+            --text: #2d2a24;
+            --text-light: #6b675e;
+            --border: #e0dcd2;
+            --accent: #3d6b5d;
+            --accent-light: #eaf2ef;
+            --red-bg: #fdf0ed;
+            --red-border: #e8b4a8;
+            --red-text: #a03d2a;
+            --red-icon: #c94f3d;
+            --yellow-bg: #fef9e7;
+            --yellow-border: #e8d48b;
+            --yellow-text: #7a6410;
+            --yellow-icon: #b8940f;
+            --orange-bg: #fef5e7;
+            --orange-border: #e8cf9b;
+            --orange-text: #7a5a10;
+            --orange-icon: #b87a0f;
+            --blue-bg: #eef5fa;
+            --blue-border: #b0cfe0;
+            --blue-text: #2a5870;
+            --blue-icon: #3a7a9e;
+            --green-bg: #eef7ef;
+            --green-border: #b0d4b0;
+            --green-text: #2a5a2a;
+            --green-icon: #3a7a3a;
+            --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --radius-sm: 6px;
+            --font: 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+            --mono: 'SF Mono', 'Cascadia Code', 'Consolas', 'Noto Sans Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font);
+            line-height: 1.7;
+            padding: 20px;
+            font-size: 15px;
+            letter-spacing: 0.01em;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* 头部 */
+        .doc-header {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 32px 36px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .doc-header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+        .doc-header .subtitle {
+            color: var(--text-light);
+            font-size: 14px;
+            letter-spacing: 0.05em;
+        }
+        .doc-header .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+        .doc-header .meta-info span {
+            background: var(--accent-light);
+            padding: 4px 14px;
+            border-radius: 20px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* 图例 */
+        .legend {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 16px 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            font-size: 13px;
+        }
+        .legend-title {
+            font-weight: 600;
+            color: var(--text);
+            margin-right: 4px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+        .legend-dot.red {
+            background: var(--red-icon);
+        }
+        .legend-dot.yellow {
+            background: var(--yellow-icon);
+        }
+        .legend-dot.orange {
+            background: var(--orange-icon);
+        }
+        .legend-dot.blue {
+            background: var(--blue-icon);
+        }
+        .legend-dot.green {
+            background: var(--green-icon);
+        }
+
+        /* 章节卡片 */
+        .section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        .section-number {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .section-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 条款 */
+        .clause {
+            padding: 10px 0 10px 0;
+            border-bottom: 1px dashed #eee;
+            position: relative;
+            transition: background 0.2s;
+        }
+        .clause:last-child {
+            border-bottom: none;
+        }
+        .clause:hover {
+            background: #fafaf7;
+        }
+        .clause-text {
+            position: relative;
+            padding-right: 8px;
+        }
+
+        /* 标注块 */
+        .note-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-left: 8px;
+            vertical-align: middle;
+            white-space: nowrap;
+            cursor: help;
+            letter-spacing: 0.03em;
+            transition: transform 0.15s;
+        }
+        .note-tag:hover {
+            transform: scale(1.06);
+        }
+        .note-tag.red {
+            background: var(--red-bg);
+            color: var(--red-text);
+            border: 1px solid var(--red-border);
+        }
+        .note-tag.yellow {
+            background: var(--yellow-bg);
+            color: var(--yellow-text);
+            border: 1px solid var(--yellow-border);
+        }
+        .note-tag.orange {
+            background: var(--orange-bg);
+            color: var(--orange-text);
+            border: 1px solid var(--orange-border);
+        }
+        .note-tag.blue {
+            background: var(--blue-bg);
+            color: var(--blue-text);
+            border: 1px solid var(--blue-border);
+        }
+        .note-tag.green {
+            background: var(--green-bg);
+            color: var(--green-text);
+            border: 1px solid var(--green-border);
+        }
+
+        /* 标注详情卡片（悬浮展开） */
+        .note-detail {
+            display: none;
+            margin-top: 8px;
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            font-size: 13.5px;
+            line-height: 1.6;
+            background: #fcfcf9;
+            border-left: 4px solid;
+            animation: fadeIn 0.2s ease;
+        }
+        .note-detail.visible {
+            display: block;
+        }
+        .note-detail.red {
+            border-left-color: var(--red-icon);
+            background: var(--red-bg);
+        }
+        .note-detail.yellow {
+            border-left-color: var(--yellow-icon);
+            background: var(--yellow-bg);
+        }
+        .note-detail.orange {
+            border-left-color: var(--orange-icon);
+            background: var(--orange-bg);
+        }
+        .note-detail.blue {
+            border-left-color: var(--blue-icon);
+            background: var(--blue-bg);
+        }
+        .note-detail.green {
+            border-left-color: var(--green-icon);
+            background: var(--green-bg);
+        }
+        .note-detail .detail-label {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .note-detail .detail-label.red {
+            color: var(--red-text);
+        }
+        .note-detail .detail-label.yellow {
+            color: var(--yellow-text);
+        }
+        .note-detail .detail-label.orange {
+            color: var(--orange-text);
+        }
+        .note-detail .detail-label.blue {
+            color: var(--blue-text);
+        }
+        .note-detail .detail-label.green {
+            color: var(--green-text);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 差异对比表 */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin-top: 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            font-size: 13.5px;
+        }
+        .comparison-grid .col-header {
+            font-weight: 700;
+            padding: 8px 14px;
+            text-align: center;
+            font-size: 13px;
+        }
+        .comparison-grid .col-header.contractor {
+            background: #f0ebe4;
+            color: #5a4e3e;
+        }
+        .comparison-grid .col-header.owner {
+            background: #e8f0ed;
+            color: #2a5a4a;
+        }
+        .comparison-grid .col-content {
+            padding: 10px 14px;
+            border-top: 1px solid var(--border);
+        }
+        .comparison-grid .col-content.contractor {
+            background: #faf8f5;
+            border-right: 1px solid var(--border);
+        }
+        .comparison-grid .col-content.owner {
+            background: #f5faf7;
+        }
+
+        /* 空白填写线 */
+        .blank-line {
+            display: inline-block;
+            min-width: 100px;
+            border-bottom: 1.5px solid #999;
+            margin: 0 4px;
+            text-indent: 0;
+        }
+
+        /* 签名区 */
+        .signature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        .signature-block {
+            text-align: center;
+        }
+        .signature-block .sig-line {
+            display: block;
+            width: 100%;
+            border-bottom: 1.5px solid #999;
+            margin-top: 32px;
+            margin-bottom: 6px;
+        }
+        .signature-block .sig-label {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* 附录汇总 */
+        .summary-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 22px 28px;
+            margin-top: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .summary-card h3 {
+            font-size: 16px;
+            margin-bottom: 14px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .summary-list {
+            list-style: none;
+            padding: 0;
+        }
+        .summary-list li {
+            padding: 7px 0;
+            border-bottom: 1px dashed #eee;
+            font-size: 13.5px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+        .summary-list .summary-tag {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* 打印优化 */
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+                font-size: 12px;
+            }
+            .section,
+            .doc-header,
+            .legend,
+            .summary-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                break-inside: avoid;
+            }
+            .note-tag {
+                cursor: default;
+            }
+            .note-detail {
+                display: block !important;
+                font-size: 11px;
+                padding: 8px 12px;
+            }
+            .legend {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .section {
+                padding: 18px 16px;
+            }
+            .doc-header {
+                padding: 20px 16px;
+            }
+            .doc-header h1 {
+                font-size: 20px;
+            }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            .comparison-grid .col-content.contractor {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+            .signature-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .note-tag {
+                font-size: 11px;
+                padding: 1px 7px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ==================== 文档头部 ==================== -->
+        <div class="doc-header">
+            <h1>🏠 老旧瓦房整改工程合同</h1>
+            <div class="subtitle">甲方（业主）与乙方（承包方/施工方）整合合同 · 含待明确事项标注</div>
+            <div class="meta-info">
+                <span>📋 整合版本 v1.0</span>
+                <span>📅 生成日期：2026年8月27日</span>
+                <span>📍 项目地址：雷公田村</span>
+            </div>
+        </div>
+
+        <!-- ==================== 图例 ==================== -->
+        <div class="legend">
+            <span class="legend-title">📌 图例：</span>
+            <span class="legend-item"><span class="legend-dot red"></span> 双方条款存在矛盾/差异</span>
+            <span class="legend-item"><span class="legend-dot yellow"></span> 模糊不清，需进一步明确</span>
+            <span class="legend-item"><span class="legend-dot orange"></span> 缺规格/品牌/尺寸等细节</span>
+            <span class="legend-item"><span class="legend-dot blue"></span> 付款/工期/安全待明确</span>
+            <span class="legend-item"><span class="legend-dot green"></span> 已整合一致（供确认）</span>
+        </div>
+
+        <!-- ==================== 合同正文 ==================== -->
+
+        <!-- 合同首部：双方信息 -->
+        <div class="section">
+            <div class="section-title">📄 合同双方信息</div>
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>甲方（业主）</strong>：<span class="blank-line"></span>
+                    &nbsp;&nbsp;身份证号：<span class="blank-line"></span>
+                    &nbsp;&nbsp;联系电话：<span class="blank-line"></span>
+                    &nbsp;&nbsp;住址：<span class="blank-line"></span>
+                </div>
+            </div>
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>乙方（承包方/施工方）</strong>：<span class="blank-line"></span>
+                    &nbsp;&nbsp;身份证号：<span class="blank-line"></span>
+                    &nbsp;&nbsp;联系电话：<span class="blank-line"></span>
+                    &nbsp;&nbsp;住址：<span class="blank-line"></span>
+                </div>
+            </div>
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>乙方性质</strong>：□ 个人承包 &nbsp;&nbsp;□ 公司承包 &nbsp;&nbsp;□ 其他：<span class="blank-line" style="min-width:60px;"></span>
+                    <span class="note-tag yellow" data-note="note-party-type">⚠️ 需明确乙方主体</span>
+                </div>
+                <div class="note-detail yellow" id="note-party-type">
+                    <span class="detail-label yellow">⚠️ 模糊点：乙方是个人还是公司？</span>
+                    甲方合同疑问中已提出此问题。若乙方为个人承包（无公司资质），建议明确：<br>
+                    ① 乙方是否为独立自然人承包，是否具备施工能力；<br>
+                    ② 若发生安全事故或质量问题，责任追索主体是谁；<br>
+                    ③ 是否涉及人情因素？甲方备注"有人情因素可适当放宽合同规定"，需双方确认适用哪种合作模式。<br>
+                    <strong>建议：</strong>在合同首部明确乙方身份（个人/公司），并附身份证或营业执照复印件。
+                </div>
+            </div>
+        </div>
+
+        <!-- 一、工程概况 -->
+        <div class="section">
+            <div class="section-number">第一条</div>
+            <div class="section-title">🏗️ 工程概况</div>
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>1.1 工程地址</strong>：<span class="blank-line"></span> 门牌：<span class="blank-line"></span>
+                </div>
+            </div>
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>1.2 原有建筑情况</strong>：甲方原有老旧瓦砖平房。本次施工全程<strong>保留原有部分沙石墙体</strong>，拆除木柱、木板、瓦面、梁柱等。
+                </div>
+            </div>
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>1.3 施工范围概述</strong>：不拆除原有大部分墙体，采用<strong>钢梁柱工艺</strong>加建、改造。①前屋加建改造二层；②后屋加建一层及屋前、屋后、屋顶等附加工程。
+                    <span class="note-tag green" data-note="note-scope-overview">✅ 双方一致</span>
+                </div>
+                <div class="note-detail green" id="note-scope-overview">
+                    <span class="detail-label green">✅ 已整合一致</span>
+                    双方对施工范围的总体描述基本一致：前屋二层、后屋一层、保留墙体、钢梁柱工艺。乙方条目中的"清拆屋顶""砌砖加2尺""墙身加固"等属于施工步骤，与甲方合同的框架描述不矛盾，可视为同一工程的具体展开。
+                </div>
+            </div>
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>1.4 前屋二楼加高高度</strong>：甲方合同写"<strong>加高80公分</strong>"；乙方条目写"<strong>砌砖加2尺左右</strong>"。
+                    <span class="note-tag red" data-note="note-height-discrepancy">🔴 双方差异</span>
+                </div>
+                <div class="note-detail red" id="note-height-discrepancy">
+                    <span class="detail-label red">🔴 双方条款存在矛盾/差异</span>
+                    <strong>甲方合同：</strong>"前屋二楼加高80公分"（= 0.8米）<br>
+                    <strong>乙方条目：</strong>"砌砖加2尺左右"（2尺 ≈ 60.6公分 ≈ 0.6米，且"左右"含模糊空间）<br>
+                    <strong>差异约20公分（0.2米）。</strong><br>
+                    <strong>需现场确认：</strong>以80公分为准，还是以2尺为准？抑或按实际墙体高度灵活处理？建议在签订前用卷尺实地测量并写入合同。<br>
+                    <strong>影响：</strong>层高差异直接影响二楼使用舒适度、楼梯设计、窗户位置、审批合规性（如有）。
+                </div>
+            </div>
+        </div>
+
+        <!-- 二、工程施工内容 -->
+        <div class="section">
+            <div class="section-number">第二条</div>
+            <div class="section-title">🧱 工程施工内容</div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>2.1 主体结构</strong>：采用钢梁立柱框架工艺改造。前屋改建为框架二层，后屋改建为框架一层。做地基础、做地圈梁、主柱圈梁做楼板，前后屋中间用混凝土搭建二层楼梯。所有承重结构依托原有墙体框架搭建，确保新旧结构稳固衔接。
+                    <span class="note-tag green" data-note="note-structure-main">✅ 双方一致</span>
+                </div>
+                <div class="note-detail green" id="note-structure-main">
+                    <span class="detail-label green">✅ 已整合一致</span>
+                    乙方条目第2、3、4、13条（砌砖、墙身加固、四角立水泥柱、巷道做楼梯）与甲方合同2.1条描述的主体结构施工内容相互对应。双方对"钢梁柱框架""保留墙体""巷道楼梯"的理解一致。
+                </div>
+            </div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>2.2 墙体工程</strong>：前后屋内新砌房间、厨房、卫生间重新砌砖、批墙、找平、外墙做防水抹油。
+                    <span class="note-tag orange" data-note="note-wall-detail">📐 缺细节</span>
+                </div>
+                <div class="note-detail orange" id="note-wall-detail">
+                    <span class="detail-label orange">📐 需补充规格/品牌/做法细节</span>
+                    ① <strong>"外墙做防水抹油"</strong>——具体使用什么防水材料？品牌？涂刷几遍？厚度要求？<br>
+                    ② <strong>"批墙"</strong>——水泥砂浆配比？批灰厚度？是否需要挂网？<br>
+                    ③ <strong>"找平"</strong>——平整度标准是多少（如2米靠尺误差≤3mm）？<br>
+                    ④ 乙方条目第8条提到<strong>"磨旧墙批汤批灰油漆"</strong>——旧墙翻新的具体工艺（打磨→批灰→油漆），甲方合同未明确提及。建议明确：旧墙哪些部分需要翻新？油漆品牌/颜色/遍数？
+                </div>
+            </div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>2.3 旧墙翻新（乙方补充条款）</strong>：磨旧墙、批汤（批荡）、批灰、油漆。
+                    <span class="note-tag yellow" data-note="note-old-wall">⚠️ 需明确范围</span>
+                </div>
+                <div class="note-detail yellow" id="note-old-wall">
+                    <span class="detail-label yellow">⚠️ 模糊不清，需进一步明确</span>
+                    此条来自乙方条目第8条，甲方合同未明确提及。需明确：<br>
+                    ① 哪些旧墙需要翻新？是全部保留墙体还是仅部分？<br>
+                    ② "油漆"使用什么类型？外墙防水防晒漆？内墙乳胶漆？颜色？<br>
+                    ③ "批汤"是否即"批荡"（抹灰找平）？与甲方2.2条"批墙找平"是否同一工序？<br>
+                    ④ 此工序是否包含在总价内，还是另计？
+                </div>
+            </div>
+        </div>
+
+        <!-- 三、配套工程 -->
+        <div class="section">
+            <div class="section-number">第三条</div>
+            <div class="section-title">🔌 配套工程</div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>3.1 门窗预留及预埋水电</strong>：预留门窗安装位、预埋水电线路。
+                    <span class="note-tag orange" data-note="note-preembed">📐 缺细节</span>
+                </div>
+                <div class="note-detail orange" id="note-preembed">
+                    <span class="detail-label orange">📐 需补充规格/品牌/尺寸细节</span>
+                    ① 预埋水电线路——电线规格（几平方铜线）？水管材质（PPR/PVC）？管径？<br>
+                    ② 预留门窗安装位——各门窗的具体尺寸？是否需要先确定门窗供应商？<br>
+                    ③ 乙方条目第9条提到"装水，装电，灯具，不包电器"——需明确哪些电器不包含（如热水器、空调、排气扇等）。
+                </div>
+            </div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>3.2 门窗规格</strong>：前后屋门用304不锈钢材料，厚度不低于1.4厘（毫米），配纱网。室内房门用实木门，卫生间用铝材门，厚度不低于1.4厘（毫米）。
+                    <span class="note-tag red" data-note="note-doors">🔴 双方差异</span>
+                </div>
+                <div class="note-detail red" id="note-doors">
+                    <span class="detail-label red">🔴 双方条款存在矛盾/差异</span>
+                    <strong>甲方合同：</strong>前后屋门304不锈钢≥1.4mm + 配纱网；室内实木门；<strong>卫生间铝材门≥1.4mm</strong><br>
+                    <strong>乙方条目：</strong>"外门用不锈钢钢门配蚊网，室内用木门"——<strong>未提及卫生间铝材门</strong><br>
+                    <strong>需确认：</strong>卫生间门是否按甲方合同要求用铝材门≥1.4mm？还是乙方遗漏？<br>
+                    <strong>另需明确：</strong>不锈钢门的具体品牌/等级？纱网材质（不锈钢纱网/纤维纱网）？实木门的木材种类？
+                </div>
+            </div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>3.3 地面及铺贴工程</strong>：前后屋地面找平，门前、前后屋一二层所有地板铺地砖、贴地脚线；厕所和厨房墙身贴瓷片到顶，吊铝质天花。前后屋四周巷道水沟用水泥沙打平。
+                    <span class="note-tag orange" data-note="note-tiles">📐 缺规格</span>
+                </div>
+                <div class="note-detail orange" id="note-tiles">
+                    <span class="detail-label orange">📐 需补充规格/品牌/尺寸细节</span>
+                    ① <strong>地砖</strong>——品牌？尺寸（60×60cm / 80×80cm）？材质（抛光/抛釉/防滑）？颜色？<br>
+                    ② <strong>地脚线</strong>——材质（瓷砖/木质/PVC）？高度？<br>
+                    ③ <strong>瓷片（墙砖）</strong>——品牌？尺寸？颜色？贴到顶的具体高度（厨房/卫生间天花高度）？<br>
+                    ④ <strong>铝质天花</strong>——品牌？厚度？条形还是方形？<br>
+                    ⑤ 乙方条目第6、7条提到"地面，2楼铺地砖，地脚线""大门口地面铺地砖"——与甲方合同一致，但同样缺规格。
+                </div>
+            </div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>3.4 水电卫浴安装</strong>：所有需要装水、排污、水电卫浴、灯具、水龙头等配套设施安装完毕。
+                    <span class="note-tag orange" data-note="note-plumbing">📐 缺规格</span>
+                </div>
+                <div class="note-detail orange" id="note-plumbing">
+                    <span class="detail-label orange">📐 需补充规格/品牌/尺寸细节</span>
+                    ① 卫浴设备（马桶、洗手盆、花洒、水龙头等）由谁采购？品牌？<br>
+                    ② 灯具由谁采购？数量？位置？<br>
+                    ③ 排污管道材质（PVC-U）？管径？<br>
+                    ④ 乙方条目第9条注明"不包电器"——需逐项确认哪些电器不包含在总价内。
+                </div>
+            </div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>3.5 屋顶隔热及铁瓦房间</strong>：两屋完工后，屋顶加装铁瓦隔热工程搭建。铁瓦材料由甲方提供，后屋门外加搭建一个铁瓦房间。
+                    <span class="note-tag yellow" data-note="note-iron-roof">⚠️ 需明确范围</span>
+                </div>
+                <div class="note-detail yellow" id="note-iron-roof">
+                    <span class="detail-label yellow">⚠️ 模糊不清，需进一步明确</span>
+                    乙方条目第15条提到"屋顶加装隔热工程，业主出材料，判头包工"——与甲方合同一致。但：<br>
+                    ① <strong>"后屋门外加搭建一个铁瓦房间"</strong>——乙方条目中<strong>未明确提及</strong>此项。需确认乙方是否知道并同意此项工程。<br>
+                    ② 铁瓦房间的尺寸？结构？是否包含门窗？<br>
+                    ③ 铁瓦隔热工程的具体做法——铁瓦下方是否加隔热棉？龙骨材质？<br>
+                    ④ 甲方提供铁瓦材料——具体规格（厚度、颜色、品牌）由甲方自行决定还是需提前与乙方沟通？
+                </div>
+            </div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>3.6 材料搬运费（乙方补充条款）</strong>：如果业主买的材料要在小巴站搬，人工另计；如果去到温泉婆门口，则免费。
+                    <span class="note-tag red" data-note="note-transport">🔴 双方差异</span>
+                </div>
+                <div class="note-detail red" id="note-transport">
+                    <span class="detail-label red">🔴 双方条款存在矛盾/差异</span>
+                    <strong>甲方合同第四条：</strong>全包（包工、包料、包机械、包人工、包运输材料）——<strong>暗示所有运输费已包含</strong><br>
+                    <strong>乙方条目第16条：</strong>"如果业主买的材料要在小巴站搬人工另计，如果去到温泉婆门口的话免费"——<strong>额外设定了搬运费条件</strong><br>
+                    <strong>矛盾：</strong>甲方认为全包已涵盖一切运输费用；乙方认为业主自购材料（如铁瓦）的搬运费需另计。<br>
+                    <strong>需确认：</strong>① 小巴站到工地的距离？② "温泉婆门口"具体位置？③ 该搬运费如何计算？④ 是否仅针对业主自购材料（如铁瓦），还是所有材料？
+                </div>
+            </div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>3.7 化粪池</strong>：后山新做化粪池。
+                    <span class="note-tag orange" data-note="note-septic">📐 缺规格</span>
+                </div>
+                <div class="note-detail orange" id="note-septic">
+                    <span class="detail-label orange">📐 需补充规格/品牌/尺寸细节</span>
+                    ① 化粪池的容量/尺寸？<br>
+                    ② 材质（成品塑料化粪池/砖砌化粪池/混凝土浇筑）？<br>
+                    ③ 是否需符合当地环保要求？是否需报备？<br>
+                    ④ 排污管如何连接到化粪池？距离？
+                </div>
+            </div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>3.8 现场清理</strong>：现场清理、施工建筑垃圾清运。
+                    <span class="note-tag green" data-note="note-cleanup">✅ 双方一致</span>
+                </div>
+                <div class="note-detail green" id="note-cleanup">
+                    <span class="detail-label green">✅ 已整合一致</span>
+                    乙方条目中虽未单独列出此项，但甲方合同第四条"全包"已明确包含"包完工清洁"。乙方在施工中必然涉及垃圾清运，建议在签订时口头确认即可。
+                </div>
+            </div>
+        </div>
+
+        <!-- 四、施工方式 -->
+        <div class="section">
+            <div class="section-number">第四条</div>
+            <div class="section-title">📦 施工方式</div>
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>全包（包工、包料、包机械、包人工、包运输材料、包安全、包质量、包完工清洁）</strong>。乙方负责采购所有施工主材、辅材、工具、设备，甲方无需承担任何材料、人工、设备费用。
+                    <span class="note-tag yellow" data-note="note-full-package">⚠️ 需明确设计责任</span>
+                </div>
+                <div class="note-detail yellow" id="note-full-package">
+                    <span class="detail-label yellow">⚠️ 模糊不清，需进一步明确</span>
+                    甲方合同疑问中已注明：<strong>"全包不包括设计安排（施工设计及选材）"</strong>。<br>
+                    但合同第四条又写"乙方负责采购所有施工主材、辅材"——<strong>选材责任到底归谁？</strong><br>
+                    需明确：<br>
+                    ① 施工设计（如钢梁柱布局、地基深度、楼梯位置等）由谁负责出方案？<br>
+                    ② 材料品牌/规格由甲方指定，还是乙方自主选择？<br>
+                    ③ 若甲方指定材料品牌，价格超出乙方预算时如何处理？<br>
+                    <strong>建议：</strong>在合同中增加"设计责任条款"，或签订前双方就关键材料清单逐一确认并签字。
+                </div>
+            </div>
+        </div>
+
+        <!-- 五、材料标准 -->
+        <div class="section">
+            <div class="section-number">第五条</div>
+            <div class="section-title">📏 材料标准（核心约定·杜绝偷工减料）</div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>5.1 材料总体要求</strong>：所有钢材、水泥、沙石、梁柱材料、防水材料、砖块等全部材料，必须为全新合格国标产品，无翻新，无劣质，无过期材料。甲方可随时查验相关材料，若材料不合格，乙方须无条件更换，产生的费用由乙方承担。
+                    <span class="note-tag green" data-note="note-material-general">✅ 双方一致</span>
+                </div>
+                <div class="note-detail green" id="note-material-general">
+                    <span class="detail-label green">✅ 已整合一致</span>
+                    此条为甲方核心要求，乙方条目中未反对。建议保留此条款，并在实际施工中执行材料进场验收制度。
+                </div>
+            </div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>5.2 钢筋规格</strong>：地基网铁、桩头铁为直径18厘螺纹钢。每个桩头9条直径18厘螺纹铁，圈梁4条直径18厘螺纹铁，楼层板面用双层8厘圆铁，每条圆铁间隔为15公分。
+                    <span class="note-tag orange" data-note="note-rebar">📐 缺细节</span>
+                </div>
+                <div class="note-detail orange" id="note-rebar">
+                    <span class="detail-label orange">📐 需补充规格/品牌/尺寸细节</span>
+                    ① 螺纹钢品牌？出厂合格证？<br>
+                    ② 桩头深度？桩头间距？<br>
+                    ③ 圈梁截面尺寸？<br>
+                    ④ 楼板厚度？<br>
+                    ⑤ 圆铁（光圆钢筋）的材质等级？（如HPB300）<br>
+                    ⑥ 上述规格是否需符合当地建筑规范？是否需结构工程师确认？
+                </div>
+            </div>
+        </div>
+
+        <!-- 六、工程总款及保证金 -->
+        <div class="section">
+            <div class="section-number">第六条</div>
+            <div class="section-title">💰 工程总款及保质金</div>
+            <div class="clause">
+                <div class="clause-text">
+                    全部工程总款共<span class="blank-line" style="min-width:80px;"></span>港元。所有工程完工验收合格后，甲方需押<strong>壹拾万元港币（HKD 100,000）</strong>作为保质金。一年后无质量问题，押金甲方无条件归还乙方。
+                    <span class="note-tag blue" data-note="note-deposit">📋 需关注</span>
+                </div>
+                <div class="note-detail blue" id="note-deposit">
+                    <span class="detail-label blue">📋 付款/工期/安全待明确</span>
+                    ① 保质金10万港元——占工程总款比例多少？是否合理？<br>
+                    ② "一年后无质量问题"——如何界定"质量问题"？由谁验收？<br>
+                    ③ 若一年内出现质量问题，扣除标准是什么？<br>
+                    ④ 保质金是否可分期退还（如半年退还50%）？<br>
+                    ⑤ 工程总款金额尚未填写，需双方确认后填写。
+                </div>
+            </div>
+        </div>
+
+        <!-- 七、付款方式 -->
+        <div class="section">
+            <div class="section-number">第七条</div>
+            <div class="section-title">💳 付款方式</div>
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>7.1 第一期</strong>：开工材料进场时付<span class="blank-line" style="min-width:60px;"></span>港元。<br>
+                    <strong>7.2 第二期</strong>：前屋二层全部完工后付<span class="blank-line" style="min-width:60px;"></span>港元。<br>
+                    <strong>7.3 第三期</strong>：所有主体工程及附加工程全部完工后，甲方验收合格后付<span class="blank-line" style="min-width:60px;"></span>港元。<br>
+                    <strong>7.4 支付原则</strong>：所有工程款支付均以双方签字确认进度为准，乙方不得借故催款、停工、加价。
+                    <span class="note-tag blue" data-note="note-payment">📋 需明确节点</span>
+                </div>
+                <div class="note-detail blue" id="note-payment">
+                    <span class="detail-label blue">📋 付款/工期/安全待明确</span>
+                    ① 三期金额分别为多少？总和是否等于总工程款？<br>
+                    ② 第三期支付时是否需扣除保质金10万港元？<br>
+                    ③ "前屋二层全部完工"如何界定？以什么作为完工标志？<br>
+                    ④ "验收合格"由谁验收？标准是什么？<br>
+                    ⑤ 若付款延迟，乙方是否有权停工？利息如何计算？
+                </div>
+            </div>
+        </div>
+
+        <!-- 八、工期及违约责任 -->
+        <div class="section">
+            <div class="section-number">第八条</div>
+            <div class="section-title">⏰ 工期及违约责任</div>
+            <div class="clause">
+                <div class="clause-text">
+                    本工程自<span class="blank-line" style="min-width:50px;"></span>年<span class="blank-line" style="min-width:30px;"></span>月<span class="blank-line" style="min-width:30px;"></span>日至<span class="blank-line" style="min-width:50px;"></span>年<span class="blank-line" style="min-width:30px;"></span>月<span class="blank-line" style="min-width:30px;"></span>日止全部完工。除雨天、停水停电、不可抗力因素外，乙方不得无故拖延工期。无故逾期完工，每逾期完工一天，乙方按工程总款的<strong>0.5%</strong>向甲方支付违约金。
+                    <span class="note-tag blue" data-note="note-timeline">📋 需明确</span>
+                </div>
+                <div class="note-detail blue" id="note-timeline">
+                    <span class="detail-label blue">📋 付款/工期/安全待明确</span>
+                    ① 开工日期和完工日期尚未填写。<br>
+                    ② 违约金按总款0.5%/天——若工程总款为100万港元，违约金为5,000港元/天。是否合理？<br>
+                    ③ "雨天"如何界定？小雨算不算？需明确以什么标准（如当日降雨量）为准。<br>
+                    ④ "不可抗力"具体包含哪些情况？<br>
+                    ⑤ 若因甲方原因（如材料供应延迟、变更设计等）导致工期延误，是否顺延？<br>
+                    ⑥ 乙方逾期超过多少天，甲方是否有权解除合同？
+                </div>
+            </div>
+        </div>
+
+        <!-- 九、安全责任 -->
+        <div class="section">
+            <div class="section-number">第九条</div>
+            <div class="section-title">🦺 安全责任（重中之重·全部归乙方）</div>
+            <div class="clause">
+                <div class="clause-text">
+                    本工程为乙方全权承包施工，施工期间所有一切安全事故意外风险全部由乙方独立承担，与甲方无任何关系。
+                    <span class="note-tag yellow" data-note="note-safety">⚠️ 需补充安全措施</span>
+                </div>
+                <div class="note-detail yellow" id="note-safety">
+                    <span class="detail-label yellow">⚠️ 模糊不清，需进一步明确</span>
+                    甲方合同要求安全事故"全部由乙方独立承担，与甲方无任何关系"。但：<br>
+                    ① <strong>法律效力问题：</strong>根据相关建筑法规，即使合同约定免除甲方责任，若甲方作为业主存在选任过失（如明知乙方无资质仍发包），仍可能承担部分法律责任。<br>
+                    ② <strong>乙方是否购买意外保险？</strong>建议要求乙方购买施工意外险，保单复印件交甲方留存。<br>
+                    ③ <strong>安全措施：</strong>合同未要求乙方采取具体安全措施（如脚手架规范、安全帽、安全网等）。建议增加。<br>
+                    ④ <strong>工人人身安全：</strong>乙方是否需为工人购买工伤保险？<br>
+                    <strong>建议：</strong>此条款在法律上并非绝对免责，建议措辞调整为"乙方应承担施工期间的全部安全责任，并购买相应保险"。同时要求乙方提供安全施工方案。
+                </div>
+            </div>
+        </div>
+
+        <!-- 十、乙方额外工作条目补充 -->
+        <div class="section">
+            <div class="section-number">附则</div>
+            <div class="section-title">📋 乙方额外工作条目（整合补充）</div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>外墙防水防晒油漆</strong>：所有外墙墙身油防水防晒油漆。
+                    <span class="note-tag orange" data-note="note-exterior-paint">📐 缺规格</span>
+                </div>
+                <div class="note-detail orange" id="note-exterior-paint">
+                    <span class="detail-label orange">📐 需补充规格/品牌/尺寸细节</span>
+                    乙方条目第17条提到此内容，甲方合同2.2条写"外墙做防水抹油"，两者可能指向同一工序，但表述不同。<br>
+                    需明确：① 是"防水抹油"还是"防水防晒油漆"？还是两者都做？② 品牌？③ 颜色？④ 涂刷遍数？
+                </div>
+            </div>
+
+            <div class="clause">
+                <div class="clause-text">
+                    <strong>巷道水泥打平</strong>：房屋下侧巷道用水泥打平。
+                    <span class="note-tag green" data-note="note-alley">✅ 双方一致</span>
+                </div>
+                <div class="note-detail green" id="note-alley">
+                    <span class="detail-label green">✅ 已整合一致</span>
+                    乙方条目第14条与甲方合同3.3条"前后屋四周巷道水沟用水泥沙打平"一致。
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 模糊点汇总 ==================== -->
+        <div class="summary-card">
+            <h3>📌 待明确事项汇总（签订前建议逐项确认）</h3>
+            <ul class="summary-list">
+                <li>
+                    <span class="note-tag red summary-tag">🔴 差异</span>
+                    <span><strong>前屋二楼加高高度</strong>：甲方80公分 vs 乙方"2尺左右"（约60公分）——差20公分，需现场确认。</span>
+                </li>
+                <li>
+                    <span class="note-tag red summary-tag">🔴 差异</span>
+                    <span><strong>卫生间门</strong>：甲方要求铝材门≥1.4mm，乙方条目未提及——需确认是否遗漏。</span>
+                </li>
+                <li>
+                    <span class="note-tag red summary-tag">🔴 差异</span>
+                    <span><strong>材料搬运费</strong>：甲方合同全包运输，乙方要求小巴站搬运另计——需确认费用归属。</span>
+                </li>
+                <li>
+                    <span class="note-tag red summary-tag">🔴 差异</span>
+                    <span><strong>铁瓦房间</strong>：甲方要求后屋门外加建铁瓦房间，乙方条目未明确提及——需确认乙方是否包含此项。</span>
+                </li>
+                <li>
+                    <span class="note-tag yellow summary-tag">⚠️ 模糊</span>
+                    <span><strong>乙方主体身份</strong>：个人还是公司？是否有人情因素？影响责任追索方式。</span>
+                </li>
+                <li>
+                    <span class="note-tag yellow summary-tag">⚠️ 模糊</span>
+                    <span><strong>设计责任归属</strong>：甲方说"全包不包括设计"，但施工设计（钢梁布局、地基深度等）由谁负责？</span>
+                </li>
+                <li>
+                    <span class="note-tag yellow summary-tag">⚠️ 模糊</span>
+                    <span><strong>旧墙翻新范围</strong>：乙方提出"磨旧墙批灰油漆"，甲方合同未提及——需明确范围和费用。</span>
+                </li>
+                <li>
+                    <span class="note-tag yellow summary-tag">⚠️ 模糊</span>
+                    <span><strong>安全责任条款</strong>：法律效力存疑，需补充保险要求。</span>
+                </li>
+                <li>
+                    <span class="note-tag orange summary-tag">📐 缺细节</span>
+                    <span><strong>地砖/瓷砖/天花</strong>：品牌、尺寸、颜色均未指定。</span>
+                </li>
+                <li>
+                    <span class="note-tag orange summary-tag">📐 缺细节</span>
+                    <span><strong>水电管线规格</strong>：电线平方数、水管材质/管径未明确。</span>
+                </li>
+                <li>
+                    <span class="note-tag orange summary-tag">📐 缺细节</span>
+                    <span><strong>化粪池规格</strong>：尺寸、材质、容量未明确。</span>
+                </li>
+                <li>
+                    <span class="note-tag orange summary-tag">📐 缺细节</span>
+                    <span><strong>防水材料</strong>：品牌、类型、涂刷遍数未明确。</span>
+                </li>
+                <li>
+                    <span class="note-tag orange summary-tag">📐 缺细节</span>
+                    <span><strong>钢筋品牌/楼板厚度</strong>：需补充结构细节。</span>
+                </li>
+                <li>
+                    <span class="note-tag blue summary-tag">📋 待明确</span>
+                    <span><strong>付款比例</strong>：三期各付多少？总款金额未填。</span>
+                </li>
+                <li>
+                    <span class="note-tag blue summary-tag">📋 待明确</span>
+                    <span><strong>工期起止日期</strong>：尚未填写。</span>
+                </li>
+                <li>
+                    <span class="note-tag blue summary-tag">📋 待明确</span>
+                    <span><strong>保质金条款</strong>：10万港元是否合理？验收标准是什么？</span>
+                </li>
+                <li>
+                    <span class="note-tag blue summary-tag">📋 待明确</span>
+                    <span><strong>逾期违约金</strong>：0.5%/天是否过高？是否设置上限？</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ==================== 签名区 ==================== -->
+        <div class="section">
+            <div class="section-title">✍️ 签署确认</div>
+            <p style="font-size:14px;color:var(--text-light);margin-bottom:16px;">
+                本合同一式两份，甲乙双方各执一份。自双方签字、按手印之日起生效，具有同等法律效力。双方确认已充分理解并同意合同全部条款，包括所有标注的待明确事项（需在签订前逐项确认并补充）。
+            </p>
+            <div class="signature-grid">
+                <div class="signature-block">
+                    <span class="sig-line"></span>
+                    <span class="sig-label">甲方（业主）签名 / 日期</span>
+                </div>
+                <div class="signature-block">
+                    <span class="sig-line"></span>
+                    <span class="sig-label">乙方（施工方）签名 / 日期</span>
+                </div>
+                <div class="signature-block">
+                    <span class="sig-line"></span>
+                    <span class="sig-label">见证人签名 / 日期</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部说明 -->
+        <div style="text-align:center;padding:16px 0 32px;font-size:12px;color:var(--text-light);">
+            <p>⚠️ 本整合合同为草稿版本，所有 <span class="note-tag red">🔴</span> <span class="note-tag yellow">⚠️</span> <span class="note-tag orange">📐</span> <span class="note-tag blue">📋</span> 标注事项需双方在签订前逐项确认、补充并签字。</p>
+            <p style="margin-top:6px;">建议在正式签订前，将本文件打印出来逐条讨论，或请专业律师/建筑顾问审阅。</p>
+        </div>
+
+    </div>
+
+    <script>
+        // 点击标注标签，展开/收起对应的详情卡片
+        document.querySelectorAll('.note-tag').forEach(tag => {
+            tag.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const targetId = this.getAttribute('data-note');
+                if (!targetId) return;
+                const detail = document.getElementById(targetId);
+                if (detail) {
+                    const isVisible = detail.classList.contains('visible');
+                    // 收起所有展开的详情
+                    document.querySelectorAll('.note-detail.visible').forEach(d => d.classList.remove(
+                        'visible'));
+                    // 展开当前点击的详情（如果之前是收起的）
+                    if (!isVisible) {
+                        detail.classList.add('visible');
+                    }
+                }
+            });
+        });
+
+        // 点击详情卡片本身也可收起
+        document.querySelectorAll('.note-detail').forEach(detail => {
+            detail.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.remove('visible');
+            });
+        });
+
+        // 点击其他地方收起所有展开的详情
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.note-detail.visible').forEach(d => d.classList.remove('visible'));
+        });
+
+        // 键盘支持：ESC关闭所有
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.note-detail.visible').forEach(d => d.classList.remove('visible'));
+            }
+        });
+    </script>
+
+</body>
+</html>
